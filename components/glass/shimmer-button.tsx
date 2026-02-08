@@ -1,13 +1,16 @@
 "use client"
 
-import { motion } from "motion/react"
+import { motion, type HTMLMotionProps } from "motion/react"
 
-interface ShimmerButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ShimmerButtonProps {
     children: React.ReactNode
     variant?: "primary" | "secondary"
+    className?: string
+    onClick?: () => void
+    disabled?: boolean
 }
 
-export function ShimmerButton({ children, variant = "primary", className = "", ...props }: ShimmerButtonProps) {
+export function ShimmerButton({ children, variant = "primary", className = "", onClick, disabled }: ShimmerButtonProps) {
     const isPrimary = variant === "primary"
 
     return (
@@ -19,7 +22,8 @@ export function ShimmerButton({ children, variant = "primary", className = "", .
                 } ${className}`}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            {...props}
+            onClick={onClick}
+            disabled={disabled}
         >
             {/* Shimmer Effect */}
             <motion.div
