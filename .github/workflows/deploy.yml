@@ -33,7 +33,9 @@ jobs:
           enablement: true
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npm install @tailwindcss/postcss lightningcss --cpu=x64 --os=linux
 
       - name: Build
         run: npm run build
