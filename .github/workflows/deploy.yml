@@ -33,7 +33,9 @@ jobs:
           enablement: true
 
       - name: Install dependencies
-        run: npm install --include=optional
+        run: |
+          rm -f package-lock.json
+          npm install
 
       - name: Build
         run: npm run build
